@@ -38,21 +38,20 @@ export const UserList = () => {
 
     return (
         <>
-           <div className="container-fluid">
-                {randomUsers.map(user => (
-                    <div className="row mb-3 justify-content-center align-items-center">
-                        <div className="col-sm-12 col-md-4 col-lg-2">
-                            <img src={user.picture.large} alt="user" className="rounded-circle" />
-                        </div>
-                        <div className="col-sm-12 col-md-8 col-lg-10">
-                            <p className="name">{user.name.first} {user.name.last}</p>
-                            <p className="email"><FaEnvelope /> {formatEmail(user.email)}</p>
-                            <p className="dob"><FaBirthdayCake /> {formatDate(user.dob.date)}</p>
-                        </div>
-                        <hr />
+            {randomUsers.map(user => (
+                <div className="row mb-3 justify-content-center align-items-center">
+                    <div className="col-sm-12 col-md-4 col-lg-2">
+                        <img src={user.picture.large} alt="user" className="rounded-circle" />
                     </div>
+                    <div className="col-sm-12 col-md-8 col-lg-10">
+                        <p className="name-list">{user.name.first} {user.name.last}</p>
+                        <p className="email"><FaEnvelope /> {formatEmail(user.email)}</p>
+                        <p className="dob"><FaBirthdayCake /> {formatDate(user.dob.date)}</p>
+                    </div>
+                    <hr />
+                </div>
                 ))}
-            </div>
+         
         </>
     );    
 }
