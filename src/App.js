@@ -9,8 +9,9 @@ function App() {
   const [layout, setLayout] = useState("list");
 
   const toggleLayout = () => {
+    localStorage.setItem("layout", layout === "list" ? "grid" : "list");
     setLayout(layout === "list" ? "grid" : "list");
-  };
+  };  
 
   const handleReload = () => {
     localStorage.setItem("layout", layout);
