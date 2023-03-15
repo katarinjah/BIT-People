@@ -23,9 +23,9 @@ export const UserList = () => {
         const formattedUsername = `${firstThree}...${lastThree}`;
         const formattedEmail = `${formattedUsername}@${domain}`;
         return formattedEmail;
-      };
+    };
 
-      const formatDate = (dob) => {
+    const formatDate = (dob) => {
         const date = new Date(dob);
         const formattedDate = date.toLocaleDateString('en-GB', {
             day: '2-digit',
@@ -35,12 +35,11 @@ export const UserList = () => {
         return formattedDate;
     };
 
-
     return (
         <>
             {randomUsers.map(user => (
                 <div className="row mb-3 justify-content-center align-items-center">
-                    <div className="col-sm-12 col-md-4 col-lg-2">
+                    <div key={user.email} className="col-sm-12 col-md-4 col-lg-2">
                         <img src={user.picture.large} alt="user" className="rounded-circle" />
                     </div>
                     <div className="col-sm-12 col-md-8 col-lg-10">
@@ -50,7 +49,7 @@ export const UserList = () => {
                     </div>
                     <hr />
                 </div>
-                ))}
+            ))}
          
         </>
     );    

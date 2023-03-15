@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header } from './components/Header/Header';
 import { Container } from './components/Container/Container';
 import { Footer } from './components/Footer/Footer';
@@ -12,9 +12,21 @@ function App() {
     setLayout(layout === "list" ? "grid" : "list");
   };
 
+  const handleReload = () => {
+    localStorage.setItem("layout", layout);
+    window.location.reload();
+  };
+  
+  useEffect(() => {
+    const storedLayout = localStorage.getItem("layout");
+    if (storedLayout) {
+      setLayout(storedLayout);
+    };
+  }, []);
+  
   return (
     <>
-      <Header toggleLayout={toggleLayout} layout={layout} />
+      <Header toggleLayout={toggleLayout} layout={layout} setLayout={setLayout} handleReload={handleReload} />
       <Container>
         {layout === "list" ? (
           <UserList />
