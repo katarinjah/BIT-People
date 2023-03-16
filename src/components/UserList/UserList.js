@@ -35,10 +35,18 @@ export const UserList = () => {
         return formattedDate;
     };
 
+    const checkGender = (user) => {
+        let className = "";
+        if (user.gender === "female") {
+            className = "female";
+        };
+        return className;
+    };
+
     return (
         <>
             {randomUsers.map(user => (
-                <div className="row mb-3 justify-content-center align-items-center">
+                <div className={`row mb-3 justify-content-center align-items-center ${checkGender(user)}`}>
                     <div key={user.email} className="col-sm-12 col-md-4 col-lg-2">
                         <img src={user.picture.large} alt="user" className="rounded-circle" />
                     </div>
@@ -47,10 +55,8 @@ export const UserList = () => {
                         <p className="email"><FaEnvelope /> {formatEmail(user.email)}</p>
                         <p className="dob"><FaBirthdayCake /> {formatDate(user.dob.date)}</p>
                     </div>
-                    <hr />
                 </div>
             ))}
-         
         </>
     );    
 }
