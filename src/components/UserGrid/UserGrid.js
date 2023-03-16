@@ -34,27 +34,31 @@ export const UserGrid = () => {
     return formattedDate;
   };
 
+  const checkGender = (user) => {
+    let className = "";
+    if (user.gender === "female") {
+      className = "female";
+    };
+    return className;
+  };  
+
   return (
     <>
-      <div className="row h-100 justify-content-center align-items-center">
-        <div className="col-8">
-          <div className="row g-3 user-list">
-            {randomUsers.map(user => (
-              <div key={user.email} className="col-sm-12 col-md-6 col-lg-4">
-                <div className="card">
-                  <figure className="image">
-                    <img src={user.picture.large} alt="user" className="img-top" />
-                    <figcaption className="name">{user.name.first}</figcaption>
-                  </figure>
-                  <div className="card-contents">
-                    <p>{formatEmail(user.email)}</p>
-                    <p>Birthdate: {formatDate(user.dob.date)}</p>
-                  </div>
-                </div>
+      <div className="row justify-content-center align-items-center g-4 user-list">
+        {randomUsers.map(user => (
+          <div key={user.email} className="col-sm-12 col-md-6 col-lg-4">
+            <div className={`card ${checkGender(user)}`}>
+              <figure className="image">
+                <img src={user.picture.large} alt="user" className="img-top" />
+                <figcaption className="name">{user.name.first}</figcaption>
+              </figure>
+              <div className="card-contents">
+                <p>{formatEmail(user.email)}</p>
+                <p>Birthdate: {formatDate(user.dob.date)}</p>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </>
   );
