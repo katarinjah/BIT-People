@@ -1,17 +1,6 @@
-import { useState, useEffect } from 'react';
 import "./UserGrid.css";
 
-export const UserGrid = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-        const response = await fetch("https://randomuser.me/api/?results=15");
-        const data = await response.json();
-        setUsers(data.results);
-      };
-      fetchData();
-    }, []);
+export const UserGrid = ({users}) => {
 
   const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, 15);
 
@@ -44,7 +33,7 @@ export const UserGrid = () => {
 
   return (
     <>
-      <div className="row justify-content-center align-items-center g-4 user-list">
+      <div className="row justify-content-center align-items-center g-4 user-grid">
         {randomUsers.map(user => (
           <div key={user.email} className="col-sm-12 col-md-6 col-lg-4">
             <div className={`card ${checkGender(user)}`}>
@@ -62,5 +51,5 @@ export const UserGrid = () => {
       </div>
     </>
   );
-}
 
+}
