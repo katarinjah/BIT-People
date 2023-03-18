@@ -38,11 +38,16 @@ function App() {
 
   useEffect(() => {
     setIsSearching(true);
-    const newFilteredUsers = users.filter(user => user.name.first.toLowerCase().includes(searchQuery.toLowerCase()) || user.name.last.toLowerCase().includes(searchQuery.toLowerCase()));
+    const newFilteredUsers = users.filter(user => {
+      const fullName = `${user.name.first} ${user.name.last}`;
+      const query = searchQuery.toLowerCase();
+      return fullName.toLowerCase().includes(query) &&
+             fullName === fullName.replace(/\b\w/g, l => l.toUpperCase());
+    });
     setFilteredUsers(newFilteredUsers);
     setIsSearching(false);
-  }, [searchQuery, users])
-
+  }, [searchQuery, users]);
+  
   useEffect(() => {
     const storedLayout = localStorage.getItem("layout");
     if (storedLayout) {
