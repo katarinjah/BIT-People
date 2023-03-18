@@ -1,18 +1,7 @@
-import { useState, useEffect } from 'react';
 import { FaBirthdayCake, FaEnvelope } from "react-icons/fa";
 import "./UserList.css";
 
-export const UserList = () => {
-    const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch("https://randomuser.me/api/?results=15");
-            const data = await response.json();
-            setUsers(data.results);
-        };
-        fetchData();
-    }, []);
+export const UserList = ({users}) => {
 
     const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, 15);
 
@@ -46,8 +35,8 @@ export const UserList = () => {
     return (
         <>
             {randomUsers.map(user => (
-                <div className={`row mb-3 justify-content-center align-items-center ${checkGender(user)}`}>
-                    <div key={user.email} className="col-sm-12 col-md-4 col-lg-2">
+                <div key={user.email} className={`row mb-3 justify-content-center align-items-center ${checkGender(user)}`}>
+                    <div className="col-sm-12 col-md-4 col-lg-2">
                         <img src={user.picture.large} alt="user" className="rounded-circle" />
                     </div>
                     <div className="col-sm-12 col-md-8 col-lg-10">

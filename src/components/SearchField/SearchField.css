@@ -1,0 +1,9 @@
+.form-control {
+    border: none;
+    height: 2.2em;
+}
+
+.input-group {
+    border-bottom: 0.5px;
+    margin-bottom: 10px;
+}
