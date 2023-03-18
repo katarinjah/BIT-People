@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Header } from './components/Header/Header';
-import { Container } from './components/Container/Container';
-import { Loader } from './components/Loader/Loader'
-import { SearchField } from './components/SearchField/SearchField'
 import { Footer } from './components/Footer/Footer';
+import { Container } from './components/Container/Container';
+import { Loader } from './components/Loader/Loader';
+import { SearchField } from './components/SearchField/SearchField';
+import { NoResults } from './components/NoResults/NoResults';
 import { UserList } from './components/UserList/UserList';
 import { UserGrid } from './components/UserGrid/UserGrid';
 
@@ -64,6 +65,7 @@ function App() {
         ) : (
           <>
             {isSearching ? null : <SearchField searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>}
+            {!filteredUsers.length && <NoResults />}
             {layout === "list" ? (
               <UserList users={filteredUsers} />
             ) : (

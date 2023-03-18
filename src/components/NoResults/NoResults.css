@@ -1,0 +1,14 @@
+.wrapper {
+    width: 50%;
+}
+
+.icon {
+    font-size: 5rem;
+    color: #6C7A89;
+}
+
+#no-match {
+    font-size: 3rem;
+    color: #6C7A89;
+    margin-top: 3%;
+}
