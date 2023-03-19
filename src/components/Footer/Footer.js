@@ -1,13 +1,18 @@
 import "./Footer.css";
 
-export const Footer = () => {
+export const Footer = ({timeElapsed}) => {
     return (
         <footer>
-            <div className="justify-content-start p-4">
+            <div className="d-flex justify-content-between footer-wrapper">
+                <div id="copyright">
                 <small>
                     © 2023 Copyright
                     <a className="bit-link" href="https://www.bgit.rs/en/"> BIT</a>
                 </small>
+                </div>
+                <div id="update">
+                <span>Last update: {timeElapsed}</span>
+                </div>
             </div>
         </footer>
     );
