@@ -5,6 +5,7 @@ import { Container } from './components/Container/Container';
 import { Loader } from './components/Loader/Loader';
 import { SearchField } from './components/SearchField/SearchField';
 import { NoResults } from './components/NoResults/NoResults';
+import { GenderCounter } from './components/GenderCounter/GenderCounter';
 import { UserList } from './components/UserList/UserList';
 import { UserGrid } from './components/UserGrid/UserGrid';
 
@@ -16,6 +17,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [lastUpdate, setLastUpdate] = useState();
+  const [male, setMale] = useState(0);
+  const [female, setFemale] = useState(0);
 
   const toggleLayout = () => {
     localStorage.setItem("layout", layout === "list" ? "grid" : "list");
@@ -89,6 +92,17 @@ function App() {
       return fullName.toLowerCase().includes(query) &&
              fullName === fullName.replace(/\b\w/g, l => l.toUpperCase());
     });
+    let maleCount = 0;
+    let femaleCount = 0;
+    users.forEach((user) => {
+      if (user.gender === "male") {
+        maleCount++;
+      } else {
+        femaleCount++;
+      }
+    });
+    setMale(maleCount);
+    setFemale(femaleCount);
     setFilteredUsers(newFilteredUsers);
     setIsSearching(false);
   }, [searchQuery, users]);
@@ -117,6 +131,8 @@ function App() {
           <>
             {isSearching ? null : <SearchField searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>}
             {!filteredUsers.length && <NoResults />}
+            <GenderCounter male={male} female={female} setMale={setMale} setFemale=
+            {setFemale} />
             {layout === "list" ? (
               <UserList users={filteredUsers} />
             ) : (
