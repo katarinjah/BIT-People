@@ -1,4 +1,4 @@
-.p-4 {
+.footer-wrapper {
     background-color: tomato;
     color: white;
     text-align: left;
@@ -15,6 +15,11 @@
     color: #0096FF;
 }
 
-small {
+#copyright {
     margin-left: 10%;
+    margin-right: 3%;
+}
+
+#update {
+    margin-right: 10%;
 }

@@ -15,6 +15,7 @@ function App() {
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
+  const [lastUpdate, setLastUpdate] = useState();
 
   const toggleLayout = () => {
     localStorage.setItem("layout", layout === "list" ? "grid" : "list");
@@ -22,9 +23,51 @@ function App() {
   };  
 
   const handleReload = () => {
+    setLastUpdate(Date.now());
+    localStorage.setItem("lastUpdate", Date.now());
     localStorage.setItem("layout", layout);
     window.location.reload();
   };
+
+  const elapsedTime = () => {
+    const diff = Math.floor((new Date() - lastUpdate) / 1000);
+
+    if (diff < 60) {
+      return `less than a minute ago`;
+    } else if (diff < 60 * 60) {
+      const minutes = Math.floor(diff / 60);
+      return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+    } else if (diff < 24 * 60 * 60) {
+      const hours = Math.floor(diff / (60 * 60));
+      return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+    } else if (diff < 7 * 24 * 60 * 60) {
+      const days = Math.floor(diff / (24 * 60 * 60));
+      return `${days} day${days > 1 ? "s" : ""} ago`;
+    } else if (diff < 30 * 24 * 60 * 60) {
+      const weeks = Math.floor(diff / (7 * 24 * 60 * 60));
+      return `${weeks} week${weeks > 1 ? "s" : ""} ago`;
+    } else if (diff < 365 * 24 * 60 * 60) {
+      const months = Math.floor(diff / (30 * 24 * 60 * 60));
+      return `${months} month${months > 1 ? "s" : ""} ago`;
+    } else {
+      return "Over a year ago";
+    }
+  };
+
+  const timeElapsed = lastUpdate && elapsedTime(lastUpdate);
+
+  useEffect(() => {
+    const storedLastUpdate = localStorage.getItem("lastUpdate");
+    if (storedLastUpdate) {
+      setLastUpdate(parseInt(storedLastUpdate));
+    };
+
+    const storedUsers = localStorage.getItem("users");
+    if (storedUsers) {
+      setUsers(JSON.parse(storedUsers));
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,8 +76,9 @@ function App() {
       const data = await response.json();
       setUsers(data.results);
       setIsLoading(false);
+      localStorage.setItem("users", JSON.stringify(data.results));
     };
-    fetchData();
+      fetchData();
   }, []);
 
   useEffect(() => {
@@ -56,6 +100,13 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const storedLastUpdate = localStorage.getItem("lastUpdate");
+    if (storedLastUpdate) {
+      setLastUpdate(parseInt(storedLastUpdate));
+    };
+  }, []);
+  
   return (
     <>
       <Header toggleLayout={toggleLayout} layout={layout} setLayout={setLayout} handleReload={handleReload} />
@@ -74,7 +125,7 @@ function App() {
           </>
         )}
       </Container>
-      <Footer />
+      <Footer timeElapsed={timeElapsed} />
     </>
   );
 };
