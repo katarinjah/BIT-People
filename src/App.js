@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Route, Routes, Navigate } from 'react-router';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Container } from './components/Container/Container';
@@ -8,6 +9,7 @@ import { NoResults } from './components/NoResults/NoResults';
 import { GenderCounter } from './components/GenderCounter/GenderCounter';
 import { UserList } from './components/UserList/UserList';
 import { UserGrid } from './components/UserGrid/UserGrid';
+import { About } from './components/About/About';
 
 function App() {
   const [layout, setLayout] = useState("list");
@@ -124,23 +126,29 @@ function App() {
   return (
     <>
       <Header toggleLayout={toggleLayout} layout={layout} setLayout={setLayout} handleReload={handleReload} />
-      <Container>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <>
-            {isSearching ? null : <SearchField searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>}
-            {!filteredUsers.length && <NoResults />}
-            <GenderCounter male={male} female={female} setMale={setMale} setFemale=
-            {setFemale} />
-            {layout === "list" ? (
-              <UserList users={filteredUsers} />
+      <Routes>
+        <Route path={'/home'} element={
+          <Container>
+            {isLoading ? (
+              <Loader />
             ) : (
-              <UserGrid users={filteredUsers} />
+              <>
+                {isSearching ? null : <SearchField searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>}
+                <GenderCounter male={male} female={female} setMale={setMale} setFemale=
+                {setFemale} />
+                {!filteredUsers.length && <NoResults />}
+                {layout === "list" ? (
+                  <UserList users={filteredUsers} />
+                ) : (
+                  <UserGrid users={filteredUsers} />
+                )}
+              </>
             )}
-          </>
-        )}
-      </Container>
+          </Container>
+        } />
+        <Route path={'/about'} element={<About />} />
+        <Route path={'/'} element={<Navigate replace to={'/home'} />} />
+      </Routes>
       <Footer timeElapsed={timeElapsed} />
     </>
   );

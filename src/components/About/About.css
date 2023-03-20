@@ -1,0 +1,14 @@
+.about-container {
+    margin: 0 auto;
+    width: 80%;
+}
+
+h1, h2 {
+    text-align: left;
+    margin-bottom: 1%;
+    padding-top: 2%;
+}
+
+p:last-child {
+    margin-bottom: 2%;
+}
