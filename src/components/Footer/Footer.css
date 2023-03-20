@@ -12,7 +12,9 @@
 }
 
 .bit-link:hover {
-    color: #0096FF;
+    color: #D2D7D3;
+    cursor: pointer;
+    transform: scale(0.97);
 }
 
 #copyright {
