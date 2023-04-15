@@ -1,8 +1,14 @@
+footer {
+    width: 100vw;
+    position: relative;
+    bottom: 0;
+}
+
 .footer-wrapper {
     background-color: tomato;
     color: white;
-    text-align: left;
     padding: 5px;
+    margin-top: 10px;
 }
 
 .bit-link {
@@ -18,10 +24,10 @@
 }
 
 #copyright {
-    margin-left: 5%;
-    margin-right: 3%;
+    padding-left: 5%;
 }
 
 #update {
-    margin-right: 10%;
+    margin-right: 5%;
+    padding-left: 25%;
 }

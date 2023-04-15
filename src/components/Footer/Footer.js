@@ -5,13 +5,13 @@ export const Footer = ({timeElapsed}) => {
         <footer>
             <div className="d-flex justify-content-between footer-wrapper">
                 <div id="copyright">
-                <small>
-                    © 2023 Copyright
-                    <a className="bit-link" href="https://www.bgit.rs/en/"> BIT</a>
-                </small>
+                    <small>
+                        © 2023 Copyright
+                        <a className="bit-link" href="https://www.bgit.rs/en/"> BIT</a>
+                    </small>
                 </div>
                 <div id="update">
-                <span>Last update: {timeElapsed}</span>
+                    <small>Last update: {timeElapsed}</small>
                 </div>
             </div>
         </footer>

@@ -12,3 +12,9 @@
     color: #6C7A89;
     margin-top: 3%;
 }
+
+@media screen and (max-width: 576px) {
+    #no-match {
+        font-size: 1.8em;
+    }
+}

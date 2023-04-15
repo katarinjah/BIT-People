@@ -6,13 +6,17 @@ import { FaTh, FaThList, FaRedo } from 'react-icons/fa';
 export const Header = ({ toggleLayout, layout, handleReload }) => {
     const navigate = useNavigate();
     return (
-        <nav className="navbar navbar-light bg-light justify-content-start">
-            <div id="header" onClick={() => navigate('/home')}>BIT People</div>
-            <div id="about" onClick={() => navigate('/about')}>About</div>
-            <div id="reload" onClick={handleReload}><FaRedo /></div>
-            <div id="layout-icon" onClick={toggleLayout}>
-                {layout === "list" ? <FaTh /> : <FaThList />}
+        <div className="d-flex justify-content-between navbar">
+            <div id="header">
+                <span onClick={() => navigate('/home')}>BIT People</span>
             </div>
-        </nav>
+            <div className="header-icons">
+                <span id="about" onClick={() => navigate('/about')}>About</span>
+                <span id="reload" onClick={handleReload}><FaRedo /></span>
+                <span id="layout-icon" onClick={toggleLayout}>
+                    {layout === "list" ? <FaTh /> : <FaThList />}
+                </span>
+            </div>
+        </div>
     );
 }

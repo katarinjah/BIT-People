@@ -1,5 +1,7 @@
 .search-container {
-    height: 3vh;
+    height: 30px;
+    width: 100%;
+    z-index: 0;
 }
 
 .form-control {
