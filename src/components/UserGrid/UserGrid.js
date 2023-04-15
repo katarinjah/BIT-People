@@ -1,7 +1,6 @@
 import "./UserGrid.css";
 
 export const UserGrid = ({users}) => {
-
   const randomUsers = users.sort(() => 0.5 - Math.random()).slice(0, 15);
 
   const formatEmail = (email) => {

@@ -1,6 +1,10 @@
 .user-grid {
-    padding-top: 1%;
-    padding-bottom: 1%;
+    margin-top: 1%;
+    padding-bottom: 5%;
+}
+
+.card-wrapper:first {
+    margin-top: 5px;
 }
 
 p {

@@ -35,7 +35,7 @@ export const UserList = ({users}) => {
     return (
         <>
             {randomUsers.map(user => (
-                <div key={user.email} className={`row mb-3 justify-content-center align-items-center ${checkGender(user)}`}>
+                <div key={user.email} className={`row mb-3 justify-content-center align-items-center user-wrapper ${checkGender(user)}`}>
                     <div className="col-sm-12 col-md-4 col-lg-2">
                         <img src={user.picture.large} alt="user" className="rounded-circle" />
                     </div>

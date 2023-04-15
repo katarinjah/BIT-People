@@ -91,9 +91,8 @@ function App() {
     const newFilteredUsers = users.filter(user => {
       const fullName = `${user.name.first} ${user.name.last}`;
       const query = searchQuery.toLowerCase();
-      return fullName.toLowerCase().includes(query) &&
-             fullName === fullName.replace(/\b\w/g, l => l.toUpperCase());
-    });
+      return fullName.toLowerCase().includes(query);
+    });    
     let maleCount = 0;
     let femaleCount = 0;
     users.forEach((user) => {
